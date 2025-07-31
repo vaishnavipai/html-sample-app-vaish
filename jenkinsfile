@@ -72,11 +72,11 @@ pipeline {
     stage ('docker image push') {
     steps {
         script {
-        def imageName = "docker.io/paivm123/mcr.microsoft.com/windows/nanoserver:vaishimgv2"
-        def imageTag = "ltsc2022"
+        def imageName = "paivm123/hello-world"
+        def imageTag = "latest"
         def hubCred   = "${DOCKER_CREDS}"
         // calling jenkins pluing docker pipeline to push
-        docker.withRegistry('https://hub.docker.com/repositories/paivm123',hubCred){
+        docker.withRegistry('https://index.docker.io/v1/',hubCred){
         docker.image(imageName + ":" + imageTag).push()
         
         }

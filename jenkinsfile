@@ -37,11 +37,11 @@ pipeline {
         steps {
            echo 'wait for sonar scan to finish'
            bat """
-           %SONAR_HOME%\\sonar-scanner \
+             sonar-scanner \
             -Dsonar.projectKey=Vaish-day3 \
             -Dsonar.sources=. \
             -Dsonar.host.url=http://13.203.151.240:9000 \
-            -Dsonar.token=sqp_85cc284ef25b7843f6e5af15eac095cae3eed397
+            -Dsonar.token=sqp_c783a28d7ae17e15d3ff4b847ca8f7550f4a270f
             """
         }
     }

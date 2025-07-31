@@ -4,7 +4,7 @@ pipeline {
         SONAR_HOME = 'C:\\Users\\Administrator\\Documents\\tools\\sonar-scanner\\bin'
         REPO_NAME  = 'https://github.com/vaishnavipai/html-sample-app-vaish.git'
         BRANCH_NAME = 'master'
-        //SONAR_TOKEN  = credentials('ashu-sonar-project3-token')
+        SONAR_TOKEN  = credentials('VAISH-SONAR-TOKEN')
     }
 
     stages {
@@ -41,7 +41,7 @@ pipeline {
             -Dsonar.projectKey=Vaish-day3 \
             -Dsonar.sources=. \
             -Dsonar.host.url=http://13.203.151.240:9000 \
-            -Dsonar.token=sqp_c783a28d7ae17e15d3ff4b847ca8f7550f4a270f
+            -Dsonar.token=${SONAR_TOKEN}
             """
         }
     }

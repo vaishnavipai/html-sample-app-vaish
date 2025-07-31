@@ -5,7 +5,7 @@ pipeline {
         REPO_NAME  = 'https://github.com/vaishnavipai/html-sample-app-vaish.git'
         BRANCH_NAME = 'master'
         SONAR_TOKEN  = credentials('VAISH-SONAR-TOKEN')
-        DOCKER_CREDS = 'dockervaishid'
+        DOCKER_CREDS = 'VAISH-DOCKER-ID'
         SONAR_SERVER_NAME = 'sonarqube-Vaishnavi-demo' //NAME IN JENKINS GLOBAL CONFIG SETTINGS
         SONAR_PROJECT_KEY = 'Vaish-day3'
     }

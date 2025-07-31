@@ -1,0 +1,17 @@
+pipeline {
+    agent any
+
+    stages {
+        //this is stage 1
+        stage('Hello') {
+            steps {
+                //stage close to verify scanner
+                echo 'Hello World'
+                echo 'version checking'
+                //bat or pwsh
+                bat """sonar-scanner --version
+                """
+            }
+        }
+    }
+}

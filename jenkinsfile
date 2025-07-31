@@ -32,5 +32,18 @@ pipeline {
                 
             }
         }
+        //doing sast with snoar-qube
+        stage('SAST with sonar-scanner') {
+        steps {
+           echo 'wait for sonar scan to finish'
+           bat """
+           %sonar_home%\\sonar-scanner \
+                -Dsonar.projectKey=Vaish-day3 \
+                -Dsonar.sources=. \
+                -Dsonar.host.url=http://13.203.151.240:9000 \
+                -Dsonar.token=sqp_85cc284ef25b7843f6e5af15eac095cae3eed397
+                """
+        }
+    }
     }
 }

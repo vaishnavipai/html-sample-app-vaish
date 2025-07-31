@@ -76,7 +76,7 @@ pipeline {
         def imageTag = "latest"
         def hubCred   = "${DOCKER_CREDS}"
         // calling jenkins pluing docker pipeline to push
-        docker.withRegistry('https://index.docker.io/v1/',hubCred){
+        docker.withRegistry('https://registry.hub.docker.com',hubCred){
         docker.image(imageName + ":" + imageTag).push()
         
         }

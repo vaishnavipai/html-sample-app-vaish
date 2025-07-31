@@ -1,5 +1,11 @@
 pipeline {
     agent any
+    environment {
+        SONAR_HOME = 'C:\\Users\\Administrator\\Documents\\tools\\sonar-scanner\\bin'
+        REPO_NAME  = 'https://github.com/redashu/sample-web-project.git'
+        BRANCH_NAME = 'master'
+        SONAR_TOKEN  = credentials('ashu-sonar-project3-token')
+    }
 
     stages {
         //this is stage 1
@@ -23,6 +29,7 @@ pipeline {
             steps {
                 echo 'clone a repo to project'
                 git url: "${REPO_NAME}", branch: "${BRANCH_NAME}"
+                
             }
         }
     }

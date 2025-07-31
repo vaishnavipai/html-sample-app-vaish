@@ -76,7 +76,7 @@ pipeline {
         def imageTag = "ltsc2022"
         def hubCred   = "${DOCKER_CREDS}"
         // calling jenkins pluing docker pipeline to push
-        docker.withRegistry('https://registry.hub.docker.com',hubCred){
+        docker.withRegistry('https://hub.docker.com/repositories/paivm123',hubCred){
         docker.image(imageName + ":" + imageTag).push()
         
         }

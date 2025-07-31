@@ -10,7 +10,12 @@ pipeline {
                 echo 'version checking'
                 //bat or pwsh
                 bat """sonar-scanner --version
+                echo == checking docker ==>
+                docker version
+                echo ==> java version ==>
+                java --version
                 """
+            
             }
         }
     }

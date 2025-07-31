@@ -73,7 +73,7 @@ pipeline {
     steps {
         script {
         def imageName = "paivm123/hello-world"
-        def imageTag = "latest"
+        def imageTag = "vaishimgv1"
         def hubCred   = "${DOCKER_CREDS}"
         // calling jenkins pluing docker pipeline to push
         docker.withRegistry('https://registry.hub.docker.com',hubCred){

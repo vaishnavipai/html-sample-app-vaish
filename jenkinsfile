@@ -5,6 +5,7 @@ pipeline {
         REPO_NAME  = 'https://github.com/vaishnavipai/html-sample-app-vaish.git'
         BRANCH_NAME = 'master'
         SONAR_TOKEN  = credentials('VAISH-SONAR-TOKEN')
+        DOCKER_CREDS = 'dockervaishid'
         SONAR_SERVER_NAME = 'sonarqube-Vaishnavi-demo' //NAME IN JENKINS GLOBAL CONFIG SETTINGS
         SONAR_PROJECT_KEY = 'Vaish-day3'
     }
@@ -50,9 +51,35 @@ pipeline {
                     """  
             }
         }
-        
+    }        
+    }
+    // using docker plugins
+    // stage ('building docker image')
+    // {
+    //     steps {
+    //     echo 'starting docker process'
+    //     //to user docker plugin using script
+    //     script {
+    //         def imageName = "docker.io/paivm123/"
+    //         def imageTag = "codev1"
+    //         docker.build("${imageName}:${imageTag}",".")
+    //     }
+    //     //verify images
+    //     bat 'docker images | findstr ashuwebapp'
+    //     }  
+    // }
+    //pushing image to dockerhub
+    stage ('docker image push') {
+    steps {
+        script {
+        def imageName = "docker.io/paivm123/mcr.microsoft.com/windows/nanoserver:vaishimgv2"
+        def imageTag = "ltsc2022"
+        def hubCred   = "${DOCKER_CREDS}"
+        // calling jenkins pluing docker pipeline to push
+        docker.withRegistry('https://registry.hub.docker.com',hubCred){
+        docker.image(imageName + ":" + imageTag).push()
+        // 
         }
-        
     }
     }
 }

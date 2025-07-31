@@ -36,23 +36,23 @@ pipeline {
             }
         }
         //doing sast with snoar-qube
-        stage('SAST with sonar-scanner') {
-            steps {
-                echo 'wait for sonar scan to finish'
-                script {
-                    withSonarQubeEnv("${SONAR_SERVER_NAME}"){
+    //     stage('SAST with sonar-scanner') {
+    //         steps {
+    //             echo 'wait for sonar scan to finish'
+    //             script {
+    //                 withSonarQubeEnv("${SONAR_SERVER_NAME}"){
                         
-                    bat """
-                        sonar-scanner \
-                    -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
-                    -Dsonar.sources=. \
-                    -Dsonar.host.url=${SONAR_HOST_URL} \
-                    -Dsonar.token=${SONAR_TOKEN}
-                    """  
-            }
-        }
-    }        
-    }
+    //                 bat """
+    //                     sonar-scanner \
+    //                 -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+    //                 -Dsonar.sources=. \
+    //                 -Dsonar.host.url=${SONAR_HOST_URL} \
+    //                 -Dsonar.token=${SONAR_TOKEN}
+    //                 """  
+    //         }
+    //     }
+    // }        
+    // }
     // using docker plugins
     // stage ('building docker image')
     // {

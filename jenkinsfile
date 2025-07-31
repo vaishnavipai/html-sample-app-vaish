@@ -5,6 +5,8 @@ pipeline {
         REPO_NAME  = 'https://github.com/vaishnavipai/html-sample-app-vaish.git'
         BRANCH_NAME = 'master'
         SONAR_TOKEN  = credentials('VAISH-SONAR-TOKEN')
+        SONAR_SERVER_NAME = 'sonarqube-Vaishnavi-demo' //NAME IN JENKINS GLOBAL CONFIG SETTINGS
+        SONAR_PROJECT_KEY = 'Vaish-day3'
     }
 
     stages {
@@ -34,15 +36,20 @@ pipeline {
         }
         //doing sast with snoar-qube
         stage('SAST with sonar-scanner') {
-        steps {
-           echo 'wait for sonar scan to finish'
+        script {
+            withSonarQubeEnv("${SONAR_SERVER_NAME}"){
+              echo 'wait for sonar scan to finish'
            bat """
              sonar-scanner \
-            -Dsonar.projectKey=Vaish-day3 \
+            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
             -Dsonar.sources=. \
-            -Dsonar.host.url=http://13.203.151.240:9000 \
+            -Dsonar.host.url=${SONAR_HOST_URL} \
             -Dsonar.token=${SONAR_TOKEN}
-            """
+            """  
+            }
+        }
+        steps {
+           
         }
     }
     }

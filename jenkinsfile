@@ -18,5 +18,12 @@ pipeline {
             
             }
         }
+        //git checkout 
+        stage('taking code to github repo') {
+            steps {
+                echo 'clone a repo to project'
+                git url: "${REPO_NAME}", branch: "${BRANCH_NAME}"
+            }
+        }
     }
 }

@@ -8,6 +8,9 @@ pipeline {
         DOCKER_CREDS = 'VAISH-DOCKER-ID'
         SONAR_SERVER_NAME = 'sonarqube-Vaishnavi-demo' //NAME IN JENKINS GLOBAL CONFIG SETTINGS
         SONAR_PROJECT_KEY = 'Vaish-day3'
+        IMAGE_NAME = "paivm123/hello-world"
+        IMAGE_TAG =  "vaishimgv1"
+        TRIVY_REPORT = "trivy-vaish-report.txt"
     }
 
     stages {
@@ -72,12 +75,12 @@ pipeline {
     stage ('docker image push') {
     steps {
         script {
-        def imageName = "paivm123/hello-world"
-        def imageTag = "vaishimgv1"
+        // def imageName = "paivm123/hello-world"
+        // def imageTag = "vaishimgv1"
         def hubCred   = "${DOCKER_CREDS}"
         // calling jenkins pluing docker pipeline to push
         docker.withRegistry('https://registry.hub.docker.com',hubCred){
-        docker.image(imageName + ":" + imageTag).push()
+        docker.image("${IMAGE_NAME}" + ":" + "${IMAGE_TAG}").push()
         
         }
         }

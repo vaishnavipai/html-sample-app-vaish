@@ -71,6 +71,16 @@ pipeline {
     //     bat 'docker images | findstr ashuwebapp'
     //     }  
     // }
+    // add stage to scan using trivy is no HIGH, CRITICAL vuln then proceed aelse stop pipeline
+    stage ('post build security check using trivy') {
+        steps {
+            echo 'doing scan' 
+            bat """
+            trivy image --severity HIGH, CRITICAL --format table -o ${TRIVY_REPORT} ${IMAGE_NAME} ${IMAGE_TAG}
+
+            """
+        }
+    }
     //pushing image to dockerhub
     stage ('docker image push') {
     steps {
